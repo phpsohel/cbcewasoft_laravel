@@ -1,5 +1,5 @@
 @extends('admin.master')
-@section('title', 'Add User')
+@section('title', 'All  User')
 
 @section('content')
 @if(Session::has('success'))
@@ -8,15 +8,6 @@ toastr.success("{{ Session('success')}}")
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
-                <div class="card card-primary">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class=""> </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="col-md-12">
                 <div class="modal fade" id="modal-lg">
                     <div class="modal-dialog modal-lg">
@@ -133,24 +124,22 @@ toastr.success("{{ Session('success')}}")
                                         <td>{{ ++$i}}</td>
                                         <td>{{ $user->name ?? ''}}</td>
                                         <td>{{ $user->email ?? ''}}</td>
-                                        <td>{{ $user->role->name ?? ''}}</td>
-
+                                        <td>{{ $user->role_name ?? ''}}</td>
                                         <td>
-                                            <a href="" class="text-success">
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                            <a href="" class="text-danger">
-                                                <i class="fa-solid fa-eye"></i>
-                                            </a>
+                                            <div class="dropdown">
+                                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <button type="button" class="btn btn-primary dropdown-item" data-toggle="modal" data-target="#edit-user{{ $user->id }}" style="color: #7c5cc4"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
 
-                                            <a id="delete" href="" class="text-danger">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                            </a>
+                                                    <a href="{{ route('user.destroy',$user->id) }}" id="delete" class="btn btn-primary dropdown-item" style="color: #7c5cc4"><i class="fa-solid fa-trash"></i> Delete</a>
+
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
+                                    @include('user.edit_modal')
                                     @endforeach
                                 </tbody>
-                                </tfoot>
                             </table>
                         </div>
                     </div>

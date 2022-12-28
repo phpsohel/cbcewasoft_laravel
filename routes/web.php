@@ -76,7 +76,8 @@ Route::middleware(['auth'])->group(function () {
         {
             Route::get('user', 'index')->name('user');
             Route::post('user/store', 'store')->name('user.store');
-            Route::get('user/edit', 'edit')->name('user.edit');
+            Route::post('user/update/{id}', 'update')->name('user.update');
+            Route::get('user/delete/{id}', 'destroy')->name('user.destroy');
         }
     );
     //Container Route

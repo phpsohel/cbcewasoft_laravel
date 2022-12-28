@@ -25,7 +25,7 @@ toastr.success("{{ Session('success')}}")
         <div class="row">
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-info">
-                    <div class="inner">
+                    <div class="inner text-center">
                         <h3>
                             @if(!empty($count))
                             {{ $count ?? ''}}
@@ -38,7 +38,7 @@ toastr.success("{{ Session('success')}}")
                     <div class="icon">
                         <i class="ion ion-bag"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->

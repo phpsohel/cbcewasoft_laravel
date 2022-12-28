@@ -68,9 +68,7 @@
                         <p>Member Report</p>
                     </a>
                 </li>
-
                 <li class="nav-item border-bottom">
-
                     <a href="{{route('member.report')}}" class="nav-link">
                         <i class="fa thin fa-gear"></i>
                         <p>Settings <i class="fas fa-angle-left right"></i></p>
@@ -91,7 +89,13 @@
                             </a>
                         </li>
                         <li class="nav-item border-bottom">
+                            <a href="" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Send Notification</p>
+                            </a>
+                        </li>
 
+                        <li class="nav-item border-bottom">
                             <a href="{{ route('setting.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>General Settings</p>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 28, 2022 at 05:53 AM
+-- Generation Time: Dec 28, 2022 at 09:00 AM
 -- Server version: 8.0.30
 -- PHP Version: 7.4.19
 
@@ -348,10 +348,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role_id`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'admin@gmail.com', NULL, '$2y$10$uKF5AnI.6F1bYfevHY7JJ.rTbGDOsDkmMOVrLmhNXsrWGiolGlJL.', '3', NULL, '2022-12-15 05:00:20', '2022-12-15 05:00:20'),
-(3, 'User', 'engrsohel123@gmail.com', NULL, '$2y$10$NKaqA6ynEMYHZxxVF06OsOl0sqagE94yQKuord3Y2q.ZwTXlC2VoG', '2', NULL, '2022-12-27 03:46:35', '2022-12-27 03:46:35'),
-(5, 'super admin', 'superadmin@gmail.com', NULL, '$2y$10$mt0lyqGrh5r2MooclcsuuuJkBcyFi2BcIJ/K6mUPbp0RZHzPl27Ou', '4', NULL, '2022-12-27 03:49:28', '2022-12-27 03:49:28'),
-(6, 'admin-2', 'admin-2@gmail.com', NULL, '$2y$10$l04HRMHuelx5zFZIAYZo4eo2k9HeIlSRFXCfcUs8ZDExfv8.cmj2u', '3', NULL, '2022-12-27 06:19:10', '2022-12-27 06:19:10'),
-(7, 'sohel mia', 'sohelmia@gmail.com', NULL, '$2y$10$9IP7uYlm9fsWLVYIDVhYSOoVY0TdQf1AoMajiehUrl8EsTtElwzLi', '4', NULL, '2022-12-27 23:51:08', '2022-12-27 23:51:08');
+(3, 'sohel', 'engrsohel123@gmail.com', NULL, '$2y$10$ZVnh3MHa4feBlX.Bt7k0LeUtv/J8MPimt1Yt09uqThtmasWCcl.wK', '4', NULL, '2022-12-27 03:46:35', '2022-12-28 02:40:11');
 
 --
 -- Indexes for dumped tables
@@ -526,7 +523,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables

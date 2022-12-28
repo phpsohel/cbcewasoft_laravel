@@ -1,23 +1,9 @@
 @extends('admin.master')
 @section('title', 'Role Index')
-@section('css')
-<!-- DataTables -->
-<link rel="stylesheet" href="{{asset('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
-<link rel="stylesheet" href="{{asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
-<link rel="stylesheet" href="{{asset('admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
-@endsection()
-<!-- Theme style -->
 @section('content')
 @if(Session::has('success'))
 toastr.success("{{ Session('success')}}")
 @endif()
-<style>
-    .dt-buttons.btn-group.flex-wrap button {
-        margin: 5px;
-        background: #209dc3;
-    }
-
-</style>
 <section class="content">
     <div class="container-fluid">
     <section class="content-header">
@@ -31,15 +17,13 @@ toastr.success("{{ Session('success')}}")
                 </div>
                 <div class="col-sm-6" style=""></div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
-    <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <!-- /.card-header -->
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
@@ -47,7 +31,6 @@ toastr.success("{{ Session('success')}}")
                                         <th>Sl</th>
                                         <th>Name</th>
                                         <th>Description</th>
-
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -56,7 +39,6 @@ toastr.success("{{ Session('success')}}")
                                 @endphp
                                 <tbody>
                                     @foreach( $roles as $role)
-
                                     <tr>
                                         <td>{{ ++$i}}</td>
                                         <td>{{ $role->name ?? ''}}</td>
@@ -70,7 +52,7 @@ toastr.success("{{ Session('success')}}")
 
                                                     <button type="button" class="btn btn-primary dropdown-item" data-toggle="modal" data-target=""><a href="{{ route('role.permission', $role->id) }}" style="color: #7c5cc4"><i class="fa-brands fa-openid"></i> Change Permission</a></button>
 
-                                                    <a href="{{ route('role.destroy',$role->id) }}" id="delete" class="btn btn-primary dropdown-item" style="color: #7c5cc4"><i class="fa-solid fa-trash"></i>Delete</a>
+                                                    <a href="{{ route('role.destroy',$role->id) }}" id="delete" class="btn btn-primary dropdown-item" style="color: #7c5cc4"><i class="fa-solid fa-trash"></i> Delete</a>
                                                 </div>
                                             </div>
                                         </td>
@@ -81,18 +63,12 @@ toastr.success("{{ Session('success')}}")
                                 </tfoot>
                             </table>
                         </div>
-                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card -->
                 </div>
-                <!-- /.col -->
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
     </section>
      <div class="row">
-         <!-- left column -->
          <div class="col-md-12">
              <div class="card card-primary">
                  <div class="row">
@@ -150,29 +126,7 @@ toastr.success("{{ Session('success')}}")
                  </div>
              </div>
          </div>
-
-{{-- Edit Modal --}}
-{{-- =========================================== --}}
-
      </div>
     </div>
 </section>
 @endsection
-@section('js')
-<!-- DataTables  & Plugins -->
-<script src="{{asset('admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}""></script>
-<script src=" {{asset('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}""></script>
-<script src="{{asset('admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}""></script>
-<script src=" {{asset('admin/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}""></script>
-<script src="{{asset('admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}""></script>
-<script src=" {{asset('admin/plugins/jszip/jszip.min.js')}}""></script>
-<script src="{{asset('admin/plugins/pdfmake/pdfmake.min.js')}}""></script>
-<script src=" {{asset('admin/plugins/pdfmake/vfs_fonts.js')}}""></script>
-<script src="{{asset('admin/plugins/datatables-buttons/js/buttons.html5.min.js')}}""></script>
-<script src=" {{asset('admin/plugins/datatables-buttons/js/buttons.print.min.js')}}""></script>
-<script src="{{asset('admin/plugins/datatables-buttons/js/buttons.colVis.min.js')}}""></script>
-<script>
-    $(function () {
-      $(" #example1").DataTable({ "responsive" : true, "lengthChange" : false, "autoWidth" : false, "buttons" : ["copy", "csv" , "excel" , "pdf" , "print" , "colvis" ] }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)'); $('#example2').DataTable({ "paging" : true, "lengthChange" : false, "searching" : false, "ordering" : true, "info" : true, "autoWidth" : false, "responsive" : true, }); }); </script>
-    @endsection

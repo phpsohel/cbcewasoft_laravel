@@ -19,7 +19,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::select('users.*', 'roles.name as role_name')->join('roles', 'users.role_id', 'roles.id')->get();
-        $roles = Role::all();
+        $roles = Role::get();
         return view('user.index', compact('users','roles'));
     }
 
@@ -78,9 +78,6 @@ class UserController extends Controller
      */
     public function edit()
     {
-        $containers = Container::all();
-        $roles = Role::all();
-        return view('user.create', compact('containers','roles'));
     }
 
     /**
@@ -92,7 +89,22 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $request->validate([
+            'email' => 'required',
+            'password' => 'required|min:5, max:10',
+            'role_id' => 'required',
+        ]);
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->role_id = $request->role_id;
+        $user->save();
+        $notification = array(
+                'message' => 'User Updated Successfully',
+                'alert-type' => 'success'
+            );
+        return redirect()->back()->with($notification);
     }
 
     /**
@@ -103,6 +115,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete  = User::find($id);
+        $delete->delete();
+        return redirect()->back();
     }
 }

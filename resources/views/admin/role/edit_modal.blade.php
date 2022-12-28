@@ -27,7 +27,6 @@
                                              <div class="form-group">
                                                  <label for="exampleInputEmail1">Description</label>
                                                  <textarea name="description" value="" id="" cols="30" rows="5" class="form-control">{{ $role->description ?? '' }}</textarea>
-
                                              </div>
                                          </div>
                                          <div class="card-footer">

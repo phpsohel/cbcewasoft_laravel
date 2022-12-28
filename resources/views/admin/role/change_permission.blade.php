@@ -21,16 +21,13 @@ toastr.success("{{ Session('success')}}")
                         <h4> Permission</h4>
                     </div>
                     <form action="{{ route('role.permission-store', $role->id) }}" method="POST">
-
                         @csrf
-
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered permission-table">
                                     <thead>
                                         <tr>
                                             <th colspan="5" class="text-center"> Permission ({{ $role->name ?? ''}})</th>
-
                                         </tr>
                                         <tr>
                                             <th colspan=""></th>
@@ -48,9 +45,7 @@ toastr.success("{{ Session('success')}}")
                                                 <div class="icheckbox_square-blue checked" aria-checked="false" aria-disabled="false">
                                                     <div class="checkbox">
                                                         <input type="checkbox" value="{{ $permission->id ?? '' }}" id="" name="permission_name[]" @foreach ($rolePermissions as $rolePermission ) {{  $permission->id == $rolePermission->id ? 'Checked' : '' }} @endforeach />
-
                                                         <label for="products-index">{{ $permission->name ?? '' }}</label>
-
                                                     </div>
                                                 </div>
                                             </td>

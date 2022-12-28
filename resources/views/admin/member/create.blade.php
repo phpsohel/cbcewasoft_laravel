@@ -1,30 +1,13 @@
 @extends('admin.master')
 @section('title', 'Add Member')
-
-@section('css')
-<!-- DataTables -->
-<link rel="stylesheet" href="{{asset('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
-<link rel="stylesheet" href="{{asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
-<link rel="stylesheet" href="{{asset('admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
-@endsection()
-<!-- Theme style -->
 @section('content')
 @if(Session::has('success'))
 toastr.success("{{ Session('success')}}")
 @endif()
-<style>
-    .dt-buttons.btn-group.flex-wrap button {
-        margin: 5px;
-        background: #209dc3;
-    }
-
-</style>
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <!-- left column -->
             <div class="col-md-12">
-                <!-- general form elements -->
                 <div class="card card-primary">
                     <div class="row">
                         <div class="col-md-12">
@@ -32,7 +15,6 @@ toastr.success("{{ Session('success')}}")
                         </div>
                     </div>
                 </div>
-                <!-- /.col -->
             </div>
             <div class="col-md-12">
                 <div class="modal fade" id="modal-lg">
@@ -204,13 +186,13 @@ toastr.success("{{ Session('success')}}")
                                                 </select>
                                             </div>
                                             <div class="col-md-6">
-                                                    <label for="exampleInputPassword1">Juridiction of Factory:</label>
-                                                    <select class="form-control" name="cbc_type">
-                                                        <option value="1">CBC-N</option>
-                                                        <option value="2">CBC-S</option>
-                                                        <option value="3">CBC-E</option>
-                                                        <option value="4">CBC-W</option>
-                                                    </select>
+                                                <label for="exampleInputPassword1">Juridiction of Factory:</label>
+                                                <select class="form-control" name="cbc_type">
+                                                    <option value="1">CBC-N</option>
+                                                    <option value="2">CBC-S</option>
+                                                    <option value="3">CBC-E</option>
+                                                    <option value="4">CBC-W</option>
+                                                </select>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
@@ -218,6 +200,7 @@ toastr.success("{{ Session('success')}}")
                                                     <input id="image" type="file" name="photo" class="form-control" id="exampleInputPassword1">
 
                                                     <img id="showImage" src="{{ asset('image/no_image.jpg') }}" alt="" width="100px;">
+                                                    
                                                     @if($errors->has('photo'))
                                                     <span style="color:red;">{{ $errors->first('photo') }}</span>
                                                     @endif
@@ -238,14 +221,10 @@ toastr.success("{{ Session('success')}}")
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                         </div>
-                        <!-- /.modal-content -->
                     </div>
-                    <!-- /.modal-dialog -->
                 </div>
 
             </div>
-
-            <!-- /.modal-dialog -->
         </div>
     </div class="container">
     <section class="content-header">
@@ -259,7 +238,7 @@ toastr.success("{{ Session('success')}}")
                 </div>
                 <div class="col-sm-6" style=""></div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
 
     <!-- Main content -->
@@ -276,28 +255,17 @@ toastr.success("{{ Session('success')}}")
                                         <th>Sl</th>
                                         <th>Name</th>
                                         <th>Father's Name </th>
-
                                         <th>Mother's Name</th>
-
                                         <th>Address</th>
-
                                         <th>Permanent Address</th>
-
                                         <th>Date of Birth</th>
                                         <th>Education</th>
-
                                         <th>Company Name</th>
-
                                         <th>Designation</th>
-
                                         <th>Company Address</th>
-
                                         <th>Phone</th>
-
                                         <th>Email</th>
-
                                         <th>Blood</th>
-
                                         <th>NID</th>
                                         <th>Juridiction of Factory</th>
                                         <th>Photo </th>
@@ -352,94 +320,14 @@ toastr.success("{{ Session('success')}}")
                                     </tr>
                                     @endforeach
                                 </tbody>
-
-
                                 </tfoot>
                             </table>
                         </div>
-                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card -->
                 </div>
-                <!-- /.col -->
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
     </section>
-
-
     </div>
 </section>
-@endsection
-@section('js')
-<!-- DataTables  & Plugins -->
-<script src="{{asset('admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-<script src=" {{asset('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{asset('admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
-<script src=" {{asset('admin/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
-<script src="{{asset('admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
-<script src=" {{asset('admin/plugins/jszip/jszip.min.js')}}"></script>
-<script src="{{asset('admin/plugins/pdfmake/pdfmake.min.js')}}"></script>
-<script src=" {{asset('admin/plugins/pdfmake/vfs_fonts.js')}}"></script>
-<script src="{{asset('admin/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
-<script src=" {{asset('admin/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
-<script src="{{asset('admin/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
-<script>
-    //Image click
-    $(document).ready(() => {
-        $('#image').change(function() {
-            const file = this.files[0];
-            console.log(file);
-            if (file) {
-                let reader = new FileReader();
-                reader.onload = function(event) {
-                    console.log(event.target.result);
-                    $('#showImage').attr('src', event.target.result);
-                }
-                reader.readAsDataURL(file);
-            }
-        });
-    });
-
-    //Delete Alert Message
-    $(document).on('click', '#delete', function(e) {
-        e.preventDefault();
-        var link = $(this).attr('href');
-        swal({
-                title: 'Are you sure want to delete?'
-                , text: 'Once You delete,This will be permently Delete'
-                , icon: 'warning'
-                , buttons: true
-                , dangerMode: true
-            })
-            .then((willdelete) => {
-                if (willdelete) {
-                    window.location.href = link;
-                } else {
-                    swal('Saafe data')
-                }
-            });
-    });
-
-    $(function() {
-        $(" #example1").DataTable({
-            "responsive": true
-            , "lengthChange": false
-            , "autoWidth": false
-            , "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        $('#example2').DataTable({
-            "paging": true
-            , "lengthChange": false
-            , "searching": false
-            , "ordering": true
-            , "info": true
-            , "autoWidth": false
-            , "responsive": true
-        , });
-    });
-
-</script>
 @endsection

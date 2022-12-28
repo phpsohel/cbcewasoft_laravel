@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\User;
 use App\Models\Domain_Hosting;
+use App\Models\Generalsetting;
 use App\Models\Member;;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
@@ -24,13 +25,15 @@ class AdminController extends Controller
     public function index()
     {
         // $count = Container::where('softDeletes', 1)->count();
-         $count = Member::count();
-        return view('admin.dashboard',compact('count'));
+        $count = Member::count();
+        $general_setting = Generalsetting::latest()->first();
+        return view('admin.dashboard',compact('count', 'general_setting'));
     }
     public function profile()
     {
         return view('admin.profile');
     }
+
     public function PasswordChange()
     {
         return view('admin.password-change');

@@ -3,6 +3,9 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\ContainerController;
+use App\Http\Controllers\Admin\GeneralSettingController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,7 +45,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('admin/password-change', 'PasswordChange')->name('admin.password-change');
         Route::post('admin/store/password-change', 'StorePasswordChange')->name('admin.store.password-change');
         Route::get('admin/logout', 'Logout')->name('admin.logout');
-        //Customer
+        //Customer Route
         Route::get('admin/all-customer', 'AllCustomer')->name('admin.all-customer');
         Route::get('admin/add-customer', 'Add_customer')->name('admin.add-customer');
         Route::post('admin/store/add-customer', 'Store')->name('admin.store.add-customer');
@@ -53,7 +56,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('admin/view-customer/{id}', 'View_Customer')->name('admin.view-customer');
         Route::get('admin/view-customer/pdf-generate/{id}', 'Generate')->name('generate-pdf.generate');
 
-        // Add Domain & Hosting
+        // Add Domain & Hosting Route
         Route::get('admin/all-domain/', 'All_domain')->name('admin.all-domain');
         Route::get('admin/add-domain', 'Add_domain')->name('admin.add-domain');
         Route::post('admin/add-domain', 'StoreAdmin')->name('admin.store.add-domain');
@@ -63,13 +66,20 @@ Route::middleware(['auth'])->group(function () {
         Route::get('admin/view-domain/{id}', 'View_Domain')->name('admin.view-domain');
         Route::get('admin/view-domain/pdf/{id}', 'DomainPdf')->name('domain.pdf');
 
-        // Expire Domain & Hosting
+        // Expire Domain & Hosting Route
          Route::get('admin/all-expire', 'Expire')->name('admin.all-expire');
          Route::post('admin/all-expire/search', 'ExpireSearch')->name('admin.all-expire.search');
         }
     );
-    //Continer
-
+    //User Route
+    Route::controller(UserController::class)->group(function()
+        {
+            Route::get('user', 'index')->name('user');
+            Route::post('user/store', 'store')->name('user.store');
+            Route::get('user/edit', 'edit')->name('user.edit');
+        }
+    );
+    //Container Route
     Route::controller(ContainerController::class)->group(function()
         {
             Route::get('admin/container/index', 'index')->name('admin.container.index');
@@ -81,9 +91,25 @@ Route::middleware(['auth'])->group(function () {
             Route::get('admin/container/show/{id}', 'show')->name('admin.container.show');
         }
     );
+    //Role Route
+    Route::controller(RoleController::class)->group(function(){
+            Route::get('role/index', 'index')->name('role.index');
+            Route::post('role/store', 'store')->name('role.store');
+            Route::post('role/update/{id}', 'roleupdate')->name('role.roleupdate');
+            Route::get('role/delete/{id}', 'destroy')->name('role.destroy');
+            Route::get('role/permission/{id}', 'permission')->name('role.permission');
+            Route::post('role/permission-store/{id}', 'permissionUpdate')->name('role.permission-store');
+    });
+    //General Setting Route
+    Route::controller(GeneralSettingController::class)->group(function(){
+            Route::get('setting/index', 'index')->name('setting.index');
+            Route::post('setting/store', 'store')->name('setting.store');
+            Route::post('setting/update/{id}', 'update')->name('setting.update');
+    });
 
-  });
+});
 
+//End Middleware
 Route::controller(AdminController::class)->group(function()
     {
        Route::get('/search', 'search')->name('admin.search');

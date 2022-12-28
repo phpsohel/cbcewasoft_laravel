@@ -4,7 +4,6 @@
 @if(Session::has('success'))
 toastr.success("{{ Session('success')}}")
 @endif()
-
 @section('content')
 <div class="row">
     <div class="col-md-2"></div>
@@ -64,8 +63,5 @@ toastr.success("{{ Session('success')}}")
         </div>
     </div>
     <div class="col-md-2"></div>
-
-    <!-- /.col (right) -->
 </div>
-
 @endsection

@@ -2,7 +2,6 @@
 @if(Session::has('success'))
 toastr.success("{{ Session('success')}}")
 @endif()
-
 @section('content')
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -19,21 +18,14 @@ toastr.success("{{ Session('success')}}")
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
 </div>
-<!-- /.content-header -->
 
 <!-- Main content -->
 <section class="content">
     <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
         <div class="row">
             <div class="col-lg-3 col-6">
-                <!-- small box -->
                 <div class="small-box bg-info">
                     <div class="inner">
-                        {{-- @php
-                        return $count;
-                        @endphp --}}
-
                         <h3>
                             @if(!empty($count))
                             {{ $count ?? ''}}
@@ -41,7 +33,7 @@ toastr.success("{{ Session('success')}}")
                             {{ 0 }}
                             @endif
                         </h3>
-                        <p>Total Member</p>
+                        <p class="text-white">Total Member</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-bag"></i>

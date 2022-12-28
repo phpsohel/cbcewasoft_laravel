@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> @yield('title', 'Dashboard')</title>
+    <link rel="icon" href="{{ asset('image/2022-12-27 logocewa.png') }}" />
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -15,12 +16,16 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css')}}">
     <!-- Tempusdominus Bootstrap 4 -->
     <link rel="stylesheet" href="{{asset('admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
-
-
     <!-- Sweet Alert -->
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
     <!-- toaster -->
     <link rel="stylesheet" href="{{asset('admin/toaster/css/toastr.css')}}">
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{asset('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
+
 
     <!-- iCheck -->
     <link rel="stylesheet" href="{{asset('admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
@@ -34,27 +39,72 @@
     <link rel="stylesheet" href="{{asset('admin/plugins/daterangepicker/daterangepicker.css')}}">
     <!-- summernote -->
     <link rel="stylesheet" href="{{asset('admin/plugins/summernote/summernote-bs4.min.css')}}">
+    <style>
+            /* .btn-group>.btn-group:not(:first-child), .btn-group>.btn:not(:first-child) {
+            margin-left: 0px;
+            } */
+            .btn-secondary {
+                border-color: #fff!important;
+            }
+
+            .buttons-copy {
+                margin: 5px;
+                background: #ff7588;
+            }
+            .buttons-csv {
+                margin: 5px;
+                background: #ffc107;
+
+            }
+            .buttons-excel {
+                margin: 5px;
+                background: #bec561;
+            }
+            .buttons-pdf {
+                margin: 5px;
+                background: #ff7588;
+            }
+            .buttons-print {
+                margin: 5px;
+                background: #2196f3;
+            }
+            .buttons-collection {
+                margin: 5px;
+                background: #7c5cc4;
+
+            }
+
+        </style>
     @yield('css')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <!-- Left navbar links -->
+        <nav class="main-header navbar navbar-expand" style="background-color: #8BD0FF;">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars text-dark"></i></a>
                 </li>
             </ul>
-
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="fa-solid fa-user-plus"></i> {{Auth()->user()->name ?? ''}}
+                    <a class="nav-link text-dark" data-toggle="dropdown" href="#">
+
+                        <i class="fa-solid fa-user-plus text-dark"></i> {{Auth()->user()->name ?? ''}}
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="max-width: 250px;
   min-width: 220px;">
+                        <div class="dropdown-divider"></div>
+                        <hr style="padding: 0;margin:0;">
+                        <a href="{{ route('user')}}" class="dropdown-item ">
+                            <i class="fa thin fa-user"></i> Users
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <hr style="padding: 0;margin:0;">
+                        <a href="{{ route('setting.index')}}" class="dropdown-item ">
+                            <i class="fa thin fa-gear"></i> Settings
+                        </a>
                         <div class="dropdown-divider"></div>
                         <hr style="padding: 0;margin:0;">
                         <a href="{{ route('admin.password-change')}}" class="dropdown-item ">
@@ -127,6 +177,20 @@
     <script src="{{ asset('admin/plugins/daterangepicker/daterangepicker.js')}}"></script>
     <!-- Tempusdominus Bootstrap 4 -->
     <script src="{{ asset('admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="{{asset('admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+    <script src=" {{asset('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+    <script src=" {{asset('admin/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+    <script src=" {{asset('admin/plugins/jszip/jszip.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/pdfmake/pdfmake.min.js')}}"></script>
+    <script src=" {{asset('admin/plugins/pdfmake/vfs_fonts.js')}}"></script>
+    <script src="{{asset('admin/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
+    <script src=" {{asset('admin/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+
     <!-- Summernote -->
     <script src="{{ asset('admin/plugins/summernote/summernote-bs4.min.js')}}"></script>
     <!-- overlayScrollbars -->
@@ -140,6 +204,40 @@
     <script src="{{ asset('admin/dist/js/PrintJs.js')}}"></script>
 
     <script>
+        //Data Table
+         $(function() {
+            $(" #example1").DataTable({
+            "responsive": true
+            , "lengthChange": false
+            , "autoWidth": false
+            , "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+            "paging": true
+            , "lengthChange": false
+            , "searching": false
+            , "ordering": true
+            , "info": true
+            , "autoWidth": false
+            , "responsive": true
+            , });
+         });
+
+        //Image click
+        $(document).ready(() => {
+            $('#image').change(function() {
+                const file = this.files[0];
+                console.log(file);
+                if (file) {
+                    let reader = new FileReader();
+                reader.onload = function(event) {
+                    console.log(event.target.result);
+                $('#showImage').attr('src', event.target.result);
+                    }
+                reader.readAsDataURL(file);
+                    }
+            });
+        });
         @if(Session::has('message'))
         var type = "{{ Session::get('alert-type','info') }}"
         switch (type) {
@@ -160,24 +258,25 @@
                 break;
         }
         @endif
-
     </script>
     <script>
         $(document).on('click', '#delete', function(e) {
             e.preventDefault();
             var link = $(this).attr('href');
             swal({
-                    title: 'Are you sure want to delete?'
-                    , text: 'Once You delete,This will be permently Delete'
-                    , icon: 'warning'
-                    , buttons: true
-                    , dangerMode: true
-                })
-                .then((willdelete) => {
-                    if (willdelete) {
-                        window.location.href = link;
-                    }
-                });
+                title: 'Are you sure want to delete?'
+                , text: 'Once You delete,This will be permently Delete'
+                , icon: 'warning'
+                , buttons: true
+                , dangerMode: true
+            })
+            .then((willdelete) => {
+                if (willdelete) {
+                window.location.href = link;
+                } else {
+                swal('Saafe data')
+                }
+            });
         });
 
     </script>
@@ -186,6 +285,12 @@
             $('#table_print').printThis();
         })
 
+    </script>
+    {{-- Checkbox Selected With change_permission.blade.php --}}
+    <script type="text/javascript">
+       $("#select_all").click(function(){
+            $('input:checkbox').not(this).prop('checked', this.checked);
+       });
     </script>
 
     @yield('js')

@@ -25,8 +25,6 @@
     <link rel="stylesheet" href="{{asset('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
-
-
     <!-- iCheck -->
     <link rel="stylesheet" href="{{asset('admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
     <!-- JQVMap -->
@@ -40,9 +38,6 @@
     <!-- summernote -->
     <link rel="stylesheet" href="{{asset('admin/plugins/summernote/summernote-bs4.min.css')}}">
     <style>
-            /* .btn-group>.btn-group:not(:first-child), .btn-group>.btn:not(:first-child) {
-            margin-left: 0px;
-            } */
             .btn-secondary {
                 border-color: #fff!important;
             }
@@ -71,30 +66,63 @@
             .buttons-collection {
                 margin: 5px;
                 background: #7c5cc4;
-
             }
-
         </style>
     @yield('css')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
-        <!-- Navbar -->
         <nav class="main-header navbar navbar-expand" style="background-color: #8BD0FF;">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars text-dark"></i></a>
                 </li>
             </ul>
-            <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link text-dark" data-toggle="dropdown" href="#">
-
-                        <i class="fa-solid fa-user-plus text-dark"></i> {{Auth()->user()->name ?? ''}}
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                        <i class="fas fa-expand-arrows-alt"></i>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="max-width: 250px;
-  min-width: 220px;">
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link " data-toggle="dropdown" href="" style="color: #7c5cc4">
+                        <i class="fa-solid fa-handshake-angle"></i> Help
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="far fa-bell"></i>
+                        <span class="badge badge-warning navbar-badge">15</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <span class="dropdown-item dropdown-header">15 Notifications</span>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-envelope mr-2"></i> 4 new messages
+                            <span class="float-right text-muted text-sm">3 mins</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-users mr-2"></i> 8 friend requests
+                            <span class="float-right text-muted text-sm">12 hours</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-file mr-2"></i> 3 new reports
+                            <span class="float-right text-muted text-sm">2 days</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link " data-toggle="dropdown" href="" style="color: #7c5cc4">
+                        <i class="fa-solid fa-user-plus" ></i> {{Auth()->user()->name ?? ''}}
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="max-width: 250px;min-width: 220px;">
                         <div class="dropdown-divider"></div>
                         <hr style="padding: 0;margin:0;">
                         <a href="{{ route('user')}}" class="dropdown-item ">
@@ -115,35 +143,24 @@
                             <i class="fa-solid fa-right-from-bracket"></i> Log Out
                         </a>
                     </div>
+                   
+
                 </li>
             </ul>
         </nav>
-        <!-- /.navbar -->
-
-        <!-- Main Sidebar Container -->
         @include('admin.sidebar')
-
-        <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             @yield('content')
-            <!-- /.content -->
         </div>
-        <!-- /.content-wrapper -->
         <footer class="main-footer text-center">
             <strong>Copyright &copy; {{date("Y-m-d")}} Acquaint Technologies.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
-
             </div>
         </footer>
-
-        <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
         </aside>
-        <!-- /.control-sidebar -->
     </div>
-    <!-- ./wrapper -->
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
@@ -152,7 +169,6 @@
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge('uibutton', $.ui.button)
-
     </script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 28, 2022 at 09:00 AM
+-- Generation Time: Dec 31, 2022 at 06:22 AM
 -- Server version: 8.0.30
 -- PHP Version: 7.4.19
 
@@ -259,7 +259,8 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at
 (1, 'add-member', 'web', '2022-12-26 10:07:18', '2022-12-26 10:07:18'),
 (2, 'edit-member', 'web', '2022-12-26 10:07:18', '2022-12-26 10:07:18'),
 (3, 'view-member', 'web', '2022-12-26 10:07:18', '2022-12-26 10:07:18'),
-(4, 'delete-member', 'web', '2022-12-26 10:07:18', '2022-12-26 10:07:18');
+(4, 'delete-member', 'web', '2022-12-26 10:07:18', '2022-12-26 10:07:18'),
+(5, 'member report', 'web', '2022-12-26 10:07:18', '2022-12-26 10:07:18');
 
 -- --------------------------------------------------------
 
@@ -322,6 +323,11 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (1, 2),
 (2, 2),
 (4, 2),
+(1, 3),
+(2, 3),
+(3, 3),
+(4, 3),
+(5, 3),
 (1, 4);
 
 -- --------------------------------------------------------
@@ -348,7 +354,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role_id`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'admin@gmail.com', NULL, '$2y$10$uKF5AnI.6F1bYfevHY7JJ.rTbGDOsDkmMOVrLmhNXsrWGiolGlJL.', '3', NULL, '2022-12-15 05:00:20', '2022-12-15 05:00:20'),
-(3, 'sohel', 'engrsohel123@gmail.com', NULL, '$2y$10$ZVnh3MHa4feBlX.Bt7k0LeUtv/J8MPimt1Yt09uqThtmasWCcl.wK', '4', NULL, '2022-12-27 03:46:35', '2022-12-28 02:40:11');
+(2, 'sohel', 'engrsohel123@gmail.com', NULL, '$2y$10$ZVnh3MHa4feBlX.Bt7k0LeUtv/J8MPimt1Yt09uqThtmasWCcl.wK', '4', NULL, '2022-12-27 03:46:35', '2022-12-28 02:40:11'),
+(3, 'staff', 'staff@gmail.com', NULL, '$2y$10$r6ttjPom4XIWWc9GAh0ycO5TdmPkQpYB4gYkivkbywZ4L8N/1.bM.', '2', NULL, '2022-12-28 03:32:36', '2022-12-31 00:02:38');
 
 --
 -- Indexes for dumped tables
@@ -505,7 +512,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -523,7 +530,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables

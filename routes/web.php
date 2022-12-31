@@ -1,30 +1,29 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\ContainerController;
 use App\Http\Controllers\Admin\GeneralSettingController;
-use App\Http\Controllers\Admin\RoleController;
-use App\Http\Controllers\Admin\UserController;
-use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-// Route::get('/', function () {
-//     return redirect('/login');
-// });
+// All Route
+// =========================
+Route::get('/cache-clear', function() {
+    Artisan::call('cache:clear');
+        dd("Cache Clear All");
+});
+
+// Login
+// ===============
 Route::get('/', function () {
     return redirect('/login');
 });
+
 //Admin
+// ============================
 Route::middleware(['auth'])->group(function () {
     Route::controller(MemberController::class)->group(function(){
         Route::get('member/index', 'index')->name('member.index');
@@ -110,7 +109,8 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
-//End Middleware
+//Search 
+// =================
 Route::controller(AdminController::class)->group(function()
     {
        Route::get('/search', 'search')->name('admin.search');

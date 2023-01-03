@@ -1,3 +1,4 @@
+
 @if(!empty($searchs))
 <div class="table-responsive">
     <table  class="table table-bordered table-striped text-nowrap">
@@ -11,43 +12,29 @@
     </table>
 </div>
 <div class="row">
-    <div class="col-12">
+    <div class="col-md-12">
         <div class="card">
-            <!-- /.card-header -->
             <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>Sl</th>
                             <th>Photo </th>
-
                             <th>Name</th>
                             <th>Father's Name </th>
-
                             <th>Mother's Name</th>
-
                             <th>Address</th>
-
                             <th>Permanent Address</th>
-
                             <th>Date of Birth</th>
                             <th>Education</th>
-
                             <th>Company Name</th>
-
                             <th>Designation</th>
-
                             <th>Company Address</th>
-
                             <th>Phone</th>
-
                             <th>Email</th>
-
                             <th>Blood</th>
-
                             <th>NID</th>
                             <th>Juridiction of Factory</th>
-                            
                         </tr>
                     </thead>
                     @php
@@ -60,7 +47,6 @@
                             <td>
                                 <img src="{{ asset('member_image/'.$member->photo ??'') }}" alt="" width="100px;">
                             </td>
-
                             <td>{{ $member->member_name ?? ''}}</td>
                             <td>{{ $member->father_name ?? ''}}</td>
                             <td>{{ $member->mother_name ?? ''}}</td>
@@ -83,26 +69,17 @@
                                 @elseif($member->cbc_type == '3')
                                     <a href="" class="text-info"> CBC -E </a>
                                 @elseif($member->cbc_type == '4')
-
                                     <a href="" class="text-danger"> CBC -W </a>
                                 @endif
                             </td>
-                            
                         </tr>
                         @endforeach
                     </tbody>
-
-
-                    </tfoot>
                 </table>
             </div>
-            <!-- /.card-body -->
         </div>
-        <!-- /.card -->
     </div>
-    <!-- /.col -->
 </div>
-
 @else
 <div class="text-danger">Sorry Your Given Number is Not Found!</div>
 @endif

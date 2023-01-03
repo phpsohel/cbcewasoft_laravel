@@ -50,11 +50,30 @@
                     </a>
                 </li>
                 <li class="nav-item border-bottom">
-
-                    <a href="{{route('member.index')}}" class="nav-link">
+                    <a href="" class="nav-link">
                         <i class="fa-solid fa-user"></i>
-                        <p>Member</p>
+                        <p>Member <i class="fas fa-angle-left right"></i></p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item border-bottom fa-carret">
+                            <a href="{{ route('member.request_list') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p> Request List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item border-bottom fa-carret">
+                            <a href="{{ route('member.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Member List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item border-bottom">
+                            <a href="{{ route('member.reject_list') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p> Rejected List</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item border-bottom">
 

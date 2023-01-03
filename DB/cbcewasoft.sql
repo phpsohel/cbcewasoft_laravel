@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 31, 2022 at 06:22 AM
+-- Generation Time: Jan 03, 2023 at 05:14 AM
 -- Server version: 8.0.30
 -- PHP Version: 7.4.19
 
@@ -159,8 +159,9 @@ CREATE TABLE `members` (
   `cbc_type` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nid` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `payment_status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'unpaid',
-  `application_status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'pending',
+  `payment_status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '2' COMMENT '1.Paid 2.Unpaid',
+  `application_status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '2' COMMENT '1.Approve 2.pending 3.Reject',
+  `note` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -169,9 +170,11 @@ CREATE TABLE `members` (
 -- Dumping data for table `members`
 --
 
-INSERT INTO `members` (`id`, `cbc_sl`, `member_name`, `father_name`, `mother_name`, `address`, `permanent_address`, `birth`, `education`, `company_name`, `designation`, `company_address`, `phone`, `email`, `blood`, `cbc_type`, `nid`, `photo`, `payment_status`, `application_status`, `created_at`, `updated_at`) VALUES
-(2, '1002', 'wifisu@mailinator.com', 'rasuxogufu@mailinator.com', 'vyrazaheq@mailinator.com', 'wugar@mailinator.com', 'jahix@mailinator.com', '2009-10-14', 'wubogu@mailinator.com', 'qupykewaxy@mailinator.com', 'kaku@mailinator.com', 'bykyduz@mailinator.com', '5445677678', 'dijokorumi@mailinator.com', 'cyke@mailinator.com', '1', '316576575', '2022-12-18 login-bg.jpg', '0', 'pending', '2022-12-18 01:20:15', '2022-12-18 01:20:15'),
-(3, 'CBC-1003', 'foledecy@mailinator.com', 'halamawovo@mailinator.com', 'rehukeryt@mailinator.com', 'caxanog@mailinator.com', 'fuje@mailinator.com', '1996-07-17', 'hyneve@mailinator.com', 'juhi@mailinator.com', 'volo@mailinator.com', 'xewiweh@mailinator.com', 'womeze@mailinator.com', 'nedepive@mailinator.com', 'hihukipil@mailinator.com', '3', '42', '2022-12-18 login-bg.jpg', '1', 'pending', '2022-12-18 03:45:03', '2022-12-18 03:45:03');
+INSERT INTO `members` (`id`, `cbc_sl`, `member_name`, `father_name`, `mother_name`, `address`, `permanent_address`, `birth`, `education`, `company_name`, `designation`, `company_address`, `phone`, `email`, `blood`, `cbc_type`, `nid`, `photo`, `payment_status`, `application_status`, `note`, `created_at`, `updated_at`) VALUES
+(8, 'CBC-1001', 'cexe@mailinator.com', 'hexecu@mailinator.com', 'wocy@mailinator.com', 'sekimon@mailinator.com', 'zupagevos@mailinator.com', '2016-04-25', 'mykid@mailinator.com', 'meceliq@mailinator.com', 'numajonow@mailinator.com', 'mewi@mailinator.com', '01686247464', 'admin@gmail.com', 'hurazakov@mailinator.com', '4', '7876877676', '2023-01-02 bg.jpg', '2', '1', NULL, '2023-01-01 22:42:12', '2023-01-01 22:42:12'),
+(9, 'CBC-1009', 'harela@mailinator.com', 'kyvimady@mailinator.com', 'gosajom@mailinator.com', 'kizimetuj@mailinator.com', 'hetaroc@mailinator.com', '2016-12-25', 'dodyte@mailinator.com', 'meleno@mailinator.com', 'nibo@mailinator.com', 'mufagowiqi@mailinator.com', 'coryzuxepe@mailinator.com', 'hydez@mailinator.com', 'syru@mailinator.com', '4', '26', '2023-01-02-pngtree-glass-morphim-effect-registration-banner-with-gradient-blue-image_934693.jpg', '1', '2', NULL, '2023-01-02 00:39:44', '2023-01-02 01:33:51'),
+(10, 'CBC-1009', 'harela@mailinator.com', 'kyvimady@mailinator.com', 'gosajom@mailinator.com', 'kizimetuj@mailinator.com', 'hetaroc@mailinator.com', '2016-12-25', 'dodyte@mailinator.com', 'meleno@mailinator.com', 'nibo@mailinator.com', 'mufagowiqi@mailinator.com', 'coryzuxepe@mailinator.com', 'hydez@mailinator.com', 'syru@mailinator.com', '4', '26', '2023-01-02 WhatsApp Image 2023-01-01 at 1.25.52 PM.jpeg', '1', '3', NULL, '2023-01-02 00:39:44', '2023-01-02 00:39:44'),
+(11, 'CBC-1011', 'xuta@mailinator.com', 'sibiveruza@mailinator.com', 'mapitenej@mailinator.com', 'cezodify@mailinator.com', 'keneviqo@mailinator.com', '2005-04-03', 'tijev@mailinator.com', 'xipa@mailinator.com', 'sebuno@mailinator.com', 'fufemikeb@mailinator.com', 'navaj@mailinator.com', 'xaqis@mailinator.com', 'gufyqop@mailinator.com', '2', '54', '2023-01-02 login-bg.jpg', '1', '3', NULL, '2023-01-02 01:35:29', '2023-01-02 01:35:29');
 
 -- --------------------------------------------------------
 
@@ -354,7 +357,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role_id`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'admin@gmail.com', NULL, '$2y$10$uKF5AnI.6F1bYfevHY7JJ.rTbGDOsDkmMOVrLmhNXsrWGiolGlJL.', '3', NULL, '2022-12-15 05:00:20', '2022-12-15 05:00:20'),
-(2, 'sohel', 'engrsohel123@gmail.com', NULL, '$2y$10$ZVnh3MHa4feBlX.Bt7k0LeUtv/J8MPimt1Yt09uqThtmasWCcl.wK', '4', NULL, '2022-12-27 03:46:35', '2022-12-28 02:40:11'),
+(2, 'sohel', 'engrsohel123@gmail.com', NULL, '$2y$10$7EG12YIAW2oVCqSO15bxZ.Cp2RZsJjVXQIYIB54G.VE6r4QCN0Hem', '4', NULL, '2022-12-27 03:46:35', '2022-12-31 00:26:38'),
 (3, 'staff', 'staff@gmail.com', NULL, '$2y$10$r6ttjPom4XIWWc9GAh0ycO5TdmPkQpYB4gYkivkbywZ4L8N/1.bM.', '2', NULL, '2022-12-28 03:32:36', '2022-12-31 00:02:38');
 
 --
@@ -500,7 +503,7 @@ ALTER TABLE `generalsettings`
 -- AUTO_INCREMENT for table `members`
 --
 ALTER TABLE `members`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `migrations`

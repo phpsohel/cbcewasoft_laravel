@@ -33,7 +33,8 @@ class CreateMembersTable extends Migration
             $table->string('cbc_type')->nullable();
             $table->string('photo')->nullable();
             $table->string('payment_status')->default('unpaid')->nullable();
-            $table->string('application_status')->default('pending')->nullable();
+            $table->string('note')->->nullable();
+            $table->string('application_status')->default('2.pending')->comment('1.Approve 2.pending 3.Reject')->nullable();
             $table->timestamps();
         });
     }

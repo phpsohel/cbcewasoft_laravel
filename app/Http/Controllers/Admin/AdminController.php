@@ -21,7 +21,71 @@ use Symfony\Component\Console\Input\Input;
 
 class AdminController extends Controller
 {
+    //register-form
+    // ==========================
+    public function register_form()
+    {
+        return view('register_form');
+    }
+    public function store_register_form(Request $request)
+    {
+        $request->validate([
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'member_name' => 'required',
+            'father_name' => 'required',
+            'mother_name' => 'required',
+            'address' => 'required',
+            'permanent_address' => 'required',
+            'birth' => 'required',
+            'education' => 'required',
+            'company_name' => 'required',
+            'designation' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'blood' => 'required',
+            'nid' => 'required',
+        ]);
+        $register = new Member();
+        $cbc ="CBC-";
+        $num   = '1000';
+        $last_id  = Member::orderBy('id','DESC')->first();
+       
+        if(!empty($last_id))
+        {
+            $code_add =  ++$last_id->id;
+        }else{
+             $code_add = 1; 
+        }
+        $code = $cbc.($num + $code_add) ;
+        $register->cbc_sl =  $code;
+        
+        $register->member_name = $request->member_name;
+        $register->father_name = $request->father_name;
+        $register->mother_name = $request->mother_name;
+        $register->address = $request->address;
+        $register->permanent_address = $request->permanent_address;
+        $register->birth = $request->birth;
+        $register->education = $request->education;
+        $register->company_name = $request->company_name;
+        $register->designation = $request->designation;
+        $register->company_address = $request->company_address;
+        $register->phone = $request->phone;
+        $register->email = $request->email;
+        $register->blood = $request->blood;
+        $register->nid = $request->nid;
+        $register->cbc_type = $request->cbc_type;
+        if($request->file('photo')){
+            $file = $request->file('photo');
+            $fileName = date('Y-m-d ').$file->getClientOriginalName();
+            $file->move(public_path('member_image'),$fileName);
+            $register->photo =  $fileName;
+            
+        }
+        $register->save();
+        return redirect()->back()->with('message', 'Registration Successfully!');
+    }
     //Admin Dashboard
+    // =============================
     public function index()
     {
         // $count = Container::where('softDeletes', 1)->count();

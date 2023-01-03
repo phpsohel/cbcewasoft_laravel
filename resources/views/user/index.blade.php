@@ -130,9 +130,12 @@ toastr.success("{{ Session('success')}}")
                                                 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                     <button type="button" class="btn btn-primary dropdown-item" data-toggle="modal" data-target="#edit-user{{ $user->id }}" style="color: #7c5cc4"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
-
-                                                    <a href="{{ route('user.destroy',$user->id) }}" id="delete" class="btn btn-primary dropdown-item" style="color: #7c5cc4"><i class="fa-solid fa-trash"></i> Delete</a>
-
+                                                    @if ($user->id <= 1)
+                                                        <a href="{{ route('user.destroy',$user->id) }}" id="delete" class="btn btn-primary dropdown-item" style="color: #7c5cc4; display:none;"><i class="fa-solid fa-trash"></i> Delete</a>
+                                                        @elseif($user->id > 1)
+                                                        
+                                                        <a href="{{ route('user.destroy',$user->id) }}" id="delete" class="btn btn-primary dropdown-item" style="color: #7c5cc4;"><i class="fa-solid fa-trash"></i> Delete</a>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </td>

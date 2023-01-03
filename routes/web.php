@@ -11,15 +11,22 @@ use App\Http\Controllers\Admin\GeneralSettingController;
 
 // All Route
 // =========================
-Route::get('/cache-clear', function() {
+Route::get('/clear', function() {
     Artisan::call('cache:clear');
-        dd("Cache Clear All");
+        dd("All Cache Clear ");
 });
 
 // Login
 // ===============
 Route::get('/', function () {
-    return redirect('/login');
+    return redirect('/register-form');
+});
+//Register Form
+// ==================
+Route::controller(AdminController::class)->group(function()
+{
+    Route::get('/register-form', 'register_form')->name('register_form');
+    Route::post('/register-form', 'store_register_form')->name('register_form.store');
 });
 
 //Admin
@@ -32,6 +39,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('member/edit/{id}', 'edit')->name('member.edit');
         Route::post('member/update/{id}', 'update')->name('member.update');
         Route::get('member/delete/{id}', 'destroy')->name('member.delete');
+
+        Route::get('member/request_list', 'request_list')->name('member.request_list');
+        Route::get('member/reject_list', 'reject_list')->name('member.reject_list');
+        
         Route::get('member/report', 'report')->name('member.report');
         Route::get('member/report', 'report')->name('member.report');
         Route::get('search/member/report', 'Ajaxreport')->name('member.search.report');

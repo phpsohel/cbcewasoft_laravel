@@ -86,7 +86,7 @@
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link " data-toggle="dropdown" href="" style="color: #7c5cc4">
+                    <a href="https://acquaintbd.com/contact-us/" target="_blank" class="nav-link" data-toggle="dropdown" style="color: #7c5cc4">
                         <i class="fa-solid fa-handshake-angle"></i> Help
                     </a>
                 </li>
@@ -143,12 +143,12 @@
                             <i class="fa-solid fa-right-from-bracket"></i> Log Out
                         </a>
                     </div>
-                   
-
                 </li>
             </ul>
         </nav>
+        
         @include('admin.sidebar')
+
         <div class="content-wrapper">
             @yield('content')
         </div>
@@ -308,7 +308,5 @@
             $('input:checkbox').not(this).prop('checked', this.checked);
        });
     </script>
-
-    @yield('js')
 </body>
 </html>

@@ -28,5 +28,6 @@ class Member extends Model
         'photo',
         'payment_status',
         'application_status',
+        'note',
     ];
 }

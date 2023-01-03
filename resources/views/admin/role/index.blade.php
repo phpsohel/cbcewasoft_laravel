@@ -35,7 +35,7 @@ toastr.success("{{ Session('success')}}")
                                     </tr>
                                 </thead>
                                 @php
-                                $i = 0;
+                                    $i = 0;
                                 @endphp
                                 <tbody>
                                     @foreach( $roles as $role)
